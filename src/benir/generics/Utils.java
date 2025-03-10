@@ -10,8 +10,12 @@ public class Utils {
     public static void findUser(User user){
         System.out.println(user);
     }
-    public static void findUserList(GenericList<User> user){
-        System.out.println(user);
+    public static void printUsers(GenericList<? super User> user){
+        GenericList<Object> temp = new GenericList<>();
+        Object x= user.get(0);
+
+        user.add(new User(10));
+        user.add(new Instructor(20));
     }
 
 }

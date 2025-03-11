@@ -10,12 +10,13 @@ public class Utils {
     public static void findUser(User user){
         System.out.println(user);
     }
+    //CAP #1 extends User
+    //Instructor extends user
     public static void printUsers(GenericList<? super User> user){
         GenericList<Object> temp = new GenericList<>();
-        Object x= user.get(0);
-
+        Object x =user.get(0);
         user.add(new User(10));
-        user.add(new Instructor(20));
+        user.add(new Instructor(23));
     }
 
 }

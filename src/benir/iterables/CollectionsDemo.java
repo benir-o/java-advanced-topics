@@ -19,7 +19,7 @@ public class CollectionsDemo {
 
 
         for (var item: myArray){
-            System.out.print(item);
+            System.out.println(item);
         }
         System.out.println(collection.isEmpty());
 

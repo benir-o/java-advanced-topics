@@ -9,6 +9,7 @@ public class Main {
         list.add("a");
         list.add("b");
         list.add("c");
+        QueueDemo.show();
 
     }
 

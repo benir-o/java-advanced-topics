@@ -10,6 +10,7 @@ public class Main {
         list.add("b");
         list.add("c");
         QueueDemo.show();
+        SetDemo.show();
 
     }
 

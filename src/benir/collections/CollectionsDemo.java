@@ -13,7 +13,7 @@ public class CollectionsDemo {
         Object[] ObjectArray=collection.toArray();
         String[] StringArray=collection.toArray(new String[0]);
         collection.remove("a");
-        collection.clear();
+        //collection.clear();
         System.out.println(collection.isEmpty());
         for(var item: collection) {
             System.out.println(item);

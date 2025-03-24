@@ -1,13 +1,23 @@
 package benir.lambdaExpressions;
 
 public class LambdaDemo {
-    public String prefix="-";
+    String message;
+    public LambdaDemo(String message){
+
+    }
+    public void print(String message){
+        System.out.println(message);
+    }
 
     public static void show(){
-        greet(message-> System.out.println(message));
+
+        greet(message1->new LambdaDemo(message1));
+        greet(LambdaDemo::new);
+        //greet(demo::print);
+        //class/object::method-name
     }
     public static void greet(Printer printer){
-        printer.print("Hello World");
+        printer.print("l2");
     }
     //What is an anonymous inner class
     //Sometimes we do not need to explicitly create a class to implement

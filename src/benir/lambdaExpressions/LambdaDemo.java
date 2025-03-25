@@ -9,6 +9,13 @@ public class LambdaDemo {
         System.out.println(message);
     }
 
+    public void mitigation(){
+        System.out.println("This is a mitigation factor");
+    }
+    public void acceleration(){
+        System.out.println("This is an acceleration factor");
+    }
+
     public static void show(){
 
         greet(message1->new LambdaDemo(message1));

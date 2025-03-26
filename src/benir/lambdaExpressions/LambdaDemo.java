@@ -1,34 +1,21 @@
 package benir.lambdaExpressions;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 public class LambdaDemo {
-    String message;
-    public LambdaDemo(String message){
-
-    }
-    public void print(String message){
-        System.out.println(message);
-    }
-
-    public void mitigation(){
-        System.out.println("This is a mitigation factor");
-    }
-    public void acceleration(){
-        System.out.println("This is an acceleration factor");
-    }
-
+//class/object::method-name
     public static void show(){
+        List<String> list =List.of("a","b","c");
 
-        greet(message1->new LambdaDemo(message1));
-        greet(LambdaDemo::new);
-        //greet(demo::print);
-        //class/object::method-name
-    }
-    public static void greet(Printer printer){
-        printer.print("l2");
-    }
-    //What is an anonymous inner class
-    //Sometimes we do not need to explicitly create a class to implement
-    //an interface
-    //Lambda expression-> An anonymous function
+        Consumer<String> print= item->System.out.println(item) ;
+        Consumer<String> printUpperCase= item->System.out.println(item.toUpperCase());
 
+        list.forEach(print.andThen(printUpperCase));
+    }
+
+    public static void main(String[] args) {
+        LambdaDemo.show();
+    }
 }
+

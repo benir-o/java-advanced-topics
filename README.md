@@ -1,6 +1,7 @@
 # My summary on Java Functional Interfaces: Consumers, Suppliers, Functions, and Predicates
 
 ## Introduction
+Throughout this project, you will encounter my practice, skills and applications of functional interfaces in my java projects. Feel free to check my code and bring suggestions!
 Java provides a set of built-in **functional interfaces** in the `java.util.function` package to support **functional programming**. These interfaces facilitate passing behavior as arguments, making code more modular and readable. The key functional interfaces are:
 
 - **`Consumer<T>`** – Accepts an argument and performs an action, **no return value**.

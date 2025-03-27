@@ -3,6 +3,7 @@ package benir.lambdaExpressions;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class LambdaDemo {
@@ -30,9 +31,11 @@ public class LambdaDemo {
                 .andThen(addBraces)
                 .apply("Key:Value");
         System.out.println(application);
-
         var result=addBraces.compose(replaceColon).apply("Key:Value");
         System.out.println(result);
+
+        Predicate<String> isLongerThan5=str->str.length()>5;
+        System.out.println(isLongerThan5.test("Liam"));
 
 
     }

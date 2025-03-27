@@ -139,7 +139,7 @@ System.out.println(names);
 
 Lambda expressions have transformed Java programming, making it more functional and modern. 🚀
 
-### 🚀 Summary
+### Repository wrap-up
 - **Exceptions** handle runtime errors gracefully.
 - **Collections** provide efficient data storage and manipulation.
 - **Lambda Expressions** offer concise and readable functional-style code.

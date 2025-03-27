@@ -87,4 +87,3 @@ Lambda expressions are widely used in Java Streams, multithreading, and function
 - **Collections** provide efficient data storage and manipulation.
 - **Lambda Expressions** offer concise and readable functional-style code.
 
-Happy Coding! 🎯

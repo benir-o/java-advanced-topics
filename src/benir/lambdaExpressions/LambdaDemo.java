@@ -1,10 +1,7 @@
 package benir.lambdaExpressions;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class LambdaDemo {
 //class/object::method-name
@@ -36,6 +33,28 @@ public class LambdaDemo {
 
         Predicate<String> isLongerThan5=str->str.length()>5;
         System.out.println(isLongerThan5.test("Liam"));
+
+        //Combining predicates
+        Predicate<String> hasLeftBrace= str->str.startsWith("{");
+        Predicate<String> hasRightBrace=str->str.endsWith("}");
+
+        var checkThisOut=hasLeftBrace.and(hasRightBrace);
+        System.out.println(checkThisOut.test("{Raul Jimenez}"));
+        //a,b->a+b->square
+        BinaryOperator<Integer> add=(a, b)->a+b;
+
+        Function<Integer,Integer> square= a->a*a;
+
+        var bodmas=add.andThen(square).apply(1,2);
+        System.out.println(bodmas);
+
+        UnaryOperator<Integer> squareit=n->n*n;
+        UnaryOperator<Integer> increment=n->n+1;
+        var myResult=increment.andThen(squareit).apply(1);
+        System.out.println(myResult);
+
+
+
 
 
     }

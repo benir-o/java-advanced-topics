@@ -83,7 +83,7 @@ Lambda expressions are widely used in Java Streams, multithreading, and function
 
 ---
 
-### Fun fact
+# Fun fact🚀
 ## What Are Lambda Expressions?
 Lambda expressions in Java provide a concise way to represent **anonymous functions**—functions without a name that can be passed around as arguments. Introduced in **Java 8**, they enable functional programming paradigms in Java, reducing boilerplate code and making code more readable.
 

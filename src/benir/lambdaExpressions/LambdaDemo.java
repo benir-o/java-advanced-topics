@@ -53,10 +53,6 @@ public class LambdaDemo {
         var myResult=increment.andThen(squareit).apply(1);
         System.out.println(myResult);
 
-
-
-
-
     }
 
     public static void main(String[] args) {

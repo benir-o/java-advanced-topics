@@ -49,4 +49,16 @@ public class _Things {
                 .flatMap(list->list.stream())
                 .forEach(n-> System.out.println(n));
     }
+    public static void filter(){
+        var movies = List.of(
+                new Movie("a",10),
+                new Movie("b",20),
+                new Movie("c",30)
+
+        );
+        //Maps and filters return a new stream
+        var movieStream = movies.stream()
+                .filter(m -> m.getLikes() > 10);
+        movieStream.forEach(m-> System.out.println(m.getName()));
+    }
 }

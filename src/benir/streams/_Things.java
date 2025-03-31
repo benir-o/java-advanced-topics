@@ -1,6 +1,7 @@
 package benir.streams;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class _Things {
@@ -17,7 +18,7 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
-        _Things.show();
+        _Things.filter();
     }
     static class Movie{
         private String name;
@@ -56,9 +57,19 @@ public class _Things {
                 new Movie("c",30)
 
         );
+
+        Predicate<Movie> isPopular= m->m.getLikes()>10;
         //Maps and filters return a new stream
+        //filter method takes a predicate function
         var movieStream = movies.stream()
-                .filter(m -> m.getLikes() > 10);
+                .filter(isPopular);
         movieStream.forEach(m-> System.out.println(m.getName()));
+    }
+    public static void _listOf(){
+        var myStream=Stream.of(List.of(3,4,5),List.of(2,3,4));
+        myStream
+                .flatMap(list->list.stream())
+                .map(n->n*2)
+                .forEach(System.out::println);
     }
 }

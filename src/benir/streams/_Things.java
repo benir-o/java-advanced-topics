@@ -2,7 +2,10 @@ package benir.streams;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class _Things {
@@ -19,7 +22,7 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
-        _Things.reducers();
+        _Things._Collectors();
     }
     static class Movie{
         private String name;
@@ -42,6 +45,10 @@ public class _Things {
         }
         public void setName(String name){
             this.name=name;
+        }
+        @Override
+        public String toString(){
+            return name;
         }
     }
     public static void show(){
@@ -166,6 +173,87 @@ public class _Things {
                 .noneMatch(greaterThan20);
 
         //You can test this out using the print method
+
+
+    }
+    public static void generalPurposeReduction(){
+        var movies = List.of(
+                new Movie("a",10),
+                new Movie("b",20),
+                new Movie("c",30)
+        );
+        //[10,20,30]
+        //[30,30]
+        //[60]
+        //Accumulator accumulates values
+        //Reduce returns an optional
+
+        //The integer class has a static method called sum
+        //Hence we can use it for method referencing
+        //instead of (a,b)->(a+b) we initiate method referencing
+        //After changing the identity of the reduce method, it then returns an integer object as seen
+        var sum= movies
+                .stream()
+                .map(m->m.getLikes())
+                .reduce(0,Integer::sum);
+
+        //The get method may throw an exception in the case that we receive an empty stream
+        //To avoid this, we use the orElse method.
+        //We print it in case we change the identity of the reduce method
+        System.out.println(sum);
+    }
+
+    public static void _Collectors(){
+        var movies = List.of(
+                new Movie("a",10),
+                new Movie("b",20),
+                new Movie("c",30)
+        );
+        //Here we would like to collect the movie likes into a data structure
+        var myList=movies
+                .stream()
+                .filter(m->m.getLikes()>10)
+                .map(Movie::getName)
+                .collect(Collectors.toList());
+
+        var mySet=movies.stream()
+                .filter(m->m.getLikes()>10)
+                .map(m->m.getName())
+                .collect(Collectors.toSet());
+
+        //How do we sort elements into a HashMap
+        //m->m.getName, m->m.getTitle
+
+        var myMap= movies
+                .stream()
+                .filter(m->m.getLikes()>10)
+                .collect(Collectors.toMap(Movie::getName, Function.identity()));
+        System.out.println(mySet);
+        System.out.println(myMap);
+        System.out.println(myList);
+        //Functional Interfaces have identity
+        //Function.identity() : Takes a value and returns the memory address of an object
+        //What if we want to add a bunch of integer values?
+
+        var intSum= movies
+                .stream()
+                .filter(m->m.getLikes()>10)
+                .collect(Collectors.summingInt(Movie::getLikes));
+
+        System.out.println(intSum);
+
+        /*
+        What is the summarize method used for?
+        It gives statistics on class objects that we use
+         */
+
+        //We would like to obtain details of the stream we are working with
+        var statistics=movies
+                .stream()
+                .filter(m->m.getLikes()>10)
+                .collect(Collectors.summarizingInt(Movie::getLikes));
+
+        System.out.println(statistics);
     }
 
 

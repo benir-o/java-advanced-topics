@@ -1,7 +1,9 @@
-# Java Essentials: Exceptions, Collections, and Lambda Expressions
+# Java Essentials: Exceptions, Collections, Lambda Expressions and Streams
 
 ## Introduction
-This document provides an overview of three essential concepts in Java: **Exceptions**, **Collections**, and **Lambda Expressions**. Understanding these topics is crucial for writing robust, efficient, and modern Java applications. As I complete the course, I will provide updates on concurrency and mutlithreading, as well as streams and the executive framework. Feel free to suggest any additions on these topics.
+This document provides an overview of three essential concepts in Java: **Exceptions**, **Collections**, **Lambda Expressions**, **Streams**. Understanding these topics is crucial for writing robust, efficient, and modern Java applications. As I complete the course, I will provide updates on the Java Streams API, as well as Concurrency and Multithreading. This readMe provides an overview of the concepts which have been comprehensively discussed within the files that I have uploaded.
+
+Feel free to bring suggestions and submit a Pull Request! Happy coding.
 
 - **Exceptions** help in handling runtime errors and improving application stability.
 - **Collections** offer powerful data structures for managing and manipulating data.
@@ -132,16 +134,55 @@ System.out.println(names);
 - **Better Performance**: Lambda expressions can be optimized by the JVM.
 - **Improved Functional Programming Support**: Enables the use of Streams API and method references.
 
-## Summary
-- Lambda expressions are inspired by **lambda calculus**.
-- They provide a functional, concise way to define behavior in Java.
-- They improve code readability, maintainability, and efficiency.
+
 
 Lambda expressions have transformed Java programming, making it more functional and modern. 🚀
 
-### Repository wrap-up
-- **Exceptions** handle runtime errors gracefully.
-- **Collections** provide efficient data storage and manipulation.
-- **Lambda Expressions** offer concise and readable functional-style code.
+
+## ⚛️Streams API
+Streams process collections efficiently using functional programming.
+
+### **Key Features**
+✅ Declarative Processing  
+✅ Lazy Evaluation  
+✅ Functional Programming Support  
+✅ Parallel Processing  
+
+### **Example Usage**
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie");
+names.stream()
+    .filter(name -> name.startsWith("A"))
+    .map(String::toUpperCase)
+    .forEach(System.out::println);
+```
+
+### **Parallel Processing**
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+numbers.parallelStream()
+    .map(n -> n * 2)
+    .forEach(System.out::println); // Order not guaranteed
+```
+
+---
+
+## 🛠️ Summary
+| Feature         | Description |
+|----------------|-------------|
+| **Exceptions**  | Handle runtime errors gracefully |
+| **Collections** | Data structures for efficient storage and manipulation |
+| **Lambda Expressions** | Functional programming, cleaner syntax |
+| **Streams API** | Process collections with declarative operations |
+
+---
+
+
+## 📖 Learn More
+- [Official Java Documentation](https://docs.oracle.com/javase/8/docs/)
+- [Baeldung Java Guide](https://www.baeldung.com/)
+
+
+
 
 

@@ -21,7 +21,7 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
-        _Things.groupGenres();
+        _Things.partition();
     }
     static class Movie implements Comparable<Movie>{
         private String name;
@@ -292,6 +292,21 @@ public class _Things {
                 .stream()
                 .collect(Collectors.groupingBy(Movie::getGenre,Collectors.mapping(Movie::getName,Collectors.joining(","))));
         System.out.println(collectToSet);
+
+    }
+    public static void partition(){
+        var movies = List.of(
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
+
+        );
+
+        var mapOfBoolToListOfMovies=movies
+                .stream()
+                .collect(Collectors.partitioningBy(m->m.getLikes()>20,
+                        Collectors.mapping(Movie::getName, Collectors.joining(","))));
+        System.out.println(mapOfBoolToListOfMovies);
 
     }
 

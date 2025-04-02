@@ -1,11 +1,13 @@
 package benir.streams;
 
+import java.util.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class _Things {
     public static void main(String[] args) {
@@ -21,7 +23,18 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
+        _Things.primitiveStreams();
+        _Things.show();
+        _Things.filter();
+        _Things._listOf();
+        _Things.streamSlice();
+        _Things.streamSort();
+        _Things.peekElements();
+        _Things.uniqueElements();
+        _Things.groupGenres();
         _Things.partition();
+        _Things._Collectors();
+        _Things.reducers();
     }
     static class Movie implements Comparable<Movie>{
         private String name;
@@ -308,6 +321,9 @@ public class _Things {
                         Collectors.mapping(Movie::getName, Collectors.joining(","))));
         System.out.println(mapOfBoolToListOfMovies);
 
+    }
+    public static void primitiveStreams(){
+        IntStream.rangeClosed(1,5).forEach(System.out::println);
     }
 
 

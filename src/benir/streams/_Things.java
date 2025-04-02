@@ -2,7 +2,6 @@ package benir.streams;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -11,9 +10,9 @@ import java.util.stream.Stream;
 public class _Things {
     public static void main(String[] args) {
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
 //        movies
@@ -22,15 +21,21 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
-        _Things._Collectors();
+        _Things.groupGenres();
     }
-    static class Movie{
+    static class Movie implements Comparable<Movie>{
         private String name;
         private int likes;
+        private Genre genre;
 
-        public Movie(String name, int likes) {
+        public Movie(String name, int likes, Genre genre) {
             this.name = name;
             this.likes = likes;
+            this.genre = genre;
+        }
+        public Movie(String name,int likes){
+            this.name=name;
+            this.likes=likes;
         }
 
         public int getLikes() {
@@ -50,6 +55,15 @@ public class _Things {
         public String toString(){
             return name;
         }
+
+        @Override
+        public int compareTo(Movie o) {
+            return likes-o.getLikes();
+        }
+
+        public Genre getGenre() {
+            return genre;
+        }
     }
     public static void show(){
         //This is a stream of list of integers
@@ -60,9 +74,9 @@ public class _Things {
     }
     public static void filter(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
 
@@ -82,9 +96,9 @@ public class _Things {
     }
     public static void streamSlice(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
         //100 movies
@@ -100,9 +114,9 @@ public class _Things {
     }
     public static void streamSort(){
         var movies = List.of(
-                new Movie("b",10),
-                new Movie("a",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
         movies.stream()
@@ -111,14 +125,13 @@ public class _Things {
     }
     public static void uniqueElements(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("a",10),
-                new Movie("b",30),
-                new Movie("c",10)
-
-                //Display the price of the movie: likes are taken as the price
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
+
+                //Display the price of the movie: likes are taken as the price
         movies
                 .stream()
                 .map(Movie::getLikes)
@@ -127,9 +140,9 @@ public class _Things {
     }
     public static void peekElements(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
 
         );
         movies
@@ -142,10 +155,12 @@ public class _Things {
     }
     public static void reducers(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
+
         );
+
         var result=movies.stream().findFirst().get();
         System.out.println(result.getName());
 
@@ -178,9 +193,10 @@ public class _Things {
     }
     public static void generalPurposeReduction(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
+
         );
         //[10,20,30]
         //[30,30]
@@ -205,9 +221,10 @@ public class _Things {
 
     public static void _Collectors(){
         var movies = List.of(
-                new Movie("a",10),
-                new Movie("b",20),
-                new Movie("c",30)
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
+
         );
         //Here we would like to collect the movie likes into a data structure
         var myList=movies
@@ -254,6 +271,28 @@ public class _Things {
                 .collect(Collectors.summarizingInt(Movie::getLikes));
 
         System.out.println(statistics);
+    }
+    public static void groupGenres(){
+        var movies = List.of(
+                new Movie("a",10, Genre.THRILLER),
+                new Movie("b",20, Genre.ACTION),
+                new Movie("c",30, Genre.ACTION)
+
+        );
+        var result=movies
+                .stream()
+                .collect(Collectors.groupingBy(Movie::getGenre));
+
+//                        Collectors.mapping(
+//                                Movie::getName,
+//                                Collectors.toList())));
+        System.out.println(result);
+
+        var collectToSet=movies
+                .stream()
+                .collect(Collectors.groupingBy(Movie::getGenre,Collectors.mapping(Movie::getName,Collectors.joining(","))));
+        System.out.println(collectToSet);
+
     }
 
 

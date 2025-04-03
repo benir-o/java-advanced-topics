@@ -1,4 +1,4 @@
-# Java Essentials: Exceptions, Collections, Lambda Expressions and Streams
+# Java Essentials: Exceptions, Collections, Lambda Expressions, Streams, Concurrency and Multithreading
 
 ## Introduction
 This document provides an overview of three essential concepts in Java: **Exceptions**, **Collections**, **Lambda Expressions**, **Streams**. Understanding these topics is crucial for writing robust, efficient, and modern Java applications. As I complete the course, I will provide updates on the Java Streams API, as well as Concurrency and Multithreading. This readMe provides an overview of the concepts which have been comprehensively discussed within the files that I have uploaded.
@@ -163,6 +163,72 @@ List<Integer> numbers = List.of(1, 2, 3, 4, 5);
 numbers.parallelStream()
     .map(n -> n * 2)
     .forEach(System.out::println); // Order not guaranteed
+```
+
+## 🧵Concurrency & Multithreading
+Concurrency refers to the ability of a program to manage multiple tasks at the same time, often by executing tasks in parallel. In Java, you can achieve concurrency using threads.
+
+### **Example: Creating a simple thread**
+```java
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("This is a thread running.");
+    }
+}
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();  // Start the thread
+    }
+}
+```
+### **Example: Using `Runnable` interface**
+```java
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("This is a Runnable thread.");
+    }
+}
+
+public class RunnableExample {
+    public static void main(String[] args) {
+        MyRunnable runnable = new MyRunnable();
+        Thread thread = new Thread(runnable);
+        thread.start();  // Start the thread
+    }
+}
+```
+## Multithreading 
+Multithreading is a specific form of concurrency where multiple threads are executed concurrently, potentially improving the performance of a program. Java provides powerful tools to manage multiple threads.
+
+### **Example: Creating multiple threads**
+```java
+class MyThread extends Thread {
+    private String name;
+
+    public MyThread(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Thread " + name + " is running.");
+    }
+}
+
+public class MultithreadingExample {
+    public static void main(String[] args) {
+        MyThread thread1 = new MyThread("1");
+        MyThread thread2 = new MyThread("2");
+
+        thread1.start();  // Start thread 1
+        thread2.start();  // Start thread 2
+    }
+}
+
 ```
 
 ---

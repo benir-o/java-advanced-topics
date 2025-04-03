@@ -23,18 +23,18 @@ public class _Things {
 //                .forEach(name-> System.out.println(name));
 
 
-        _Things.primitiveStreams();
-        _Things.show();
-        _Things.filter();
-        _Things._listOf();
-        _Things.streamSlice();
-        _Things.streamSort();
-        _Things.peekElements();
-        _Things.uniqueElements();
-        _Things.groupGenres();
+//        _Things.primitiveStreams();
+//        _Things.show();
+//        _Things.filter();
+//        _Things._listOf();
+//        _Things.streamSlice();
+//        _Things.streamSort();
+//        _Things.peekElements();
+//        _Things.uniqueElements();
+//        _Things.groupGenres();
         _Things.partition();
-        _Things._Collectors();
-        _Things.reducers();
+//        _Things._Collectors();
+//        _Things.reducers();
     }
     static class Movie implements Comparable<Movie>{
         private String name;
@@ -314,6 +314,11 @@ public class _Things {
                 new Movie("c",30, Genre.ACTION)
 
         );
+        var result1=movies.stream()
+                .collect(Collectors.groupingBy(Movie::getGenre,
+                        Collectors.mapping(Movie::getName,
+                                Collectors.joining(","))));
+        System.out.println(result1);
 
         var mapOfBoolToListOfMovies=movies
                 .stream()

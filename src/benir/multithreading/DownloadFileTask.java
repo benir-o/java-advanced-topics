@@ -15,6 +15,10 @@ public class DownloadFileTask implements Runnable{
         so we use the static method sleep that takes in a parameter
         requiring the number of milliseconds
          */
+        for (var i=0;i<Integer.MAX_VALUE;i++){
+            if (Thread.currentThread().isInterrupted()) return;
+            System.out.println("Downloading byte:"+i);
+        }
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

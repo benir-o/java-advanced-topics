@@ -7,6 +7,7 @@ public class Main {
          */
         System.out.println(Thread.activeCount());
         System.out.println(Runtime.getRuntime().availableProcessors());
-        ThreadDemo.threadJoining();
+//        ThreadDemo.threadJoining();
+        ThreadDemo.threadCancel();
     }
 }

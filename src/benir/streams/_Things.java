@@ -28,7 +28,7 @@ public class _Things {
 //        _Things.filter();
 //        _Things._listOf();
 //        _Things.streamSlice();
-//        _Things.streamSort();
+        _Things.streamSort();
 //        _Things.peekElements();
 //        _Things.uniqueElements();
 //        _Things.groupGenres();
@@ -134,7 +134,8 @@ public class _Things {
         );
         movies.stream()
                 .sorted(Comparator.comparing(Movie::getName).reversed())
-                .forEach(n-> System.out.println(n.getName()));
+                .map(n->n.getName())
+                .forEach(n-> System.out.println(n));
     }
     public static void uniqueElements(){
         var movies = List.of(

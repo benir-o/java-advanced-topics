@@ -3,10 +3,19 @@ package benir.multithreading;
 public class DownloadFileTask implements Runnable{
 
 
+    private DownloadStatus status;
+    public DownloadFileTask(){
+
+    }
+
+    public DownloadFileTask(DownloadStatus status) {
+        this.status = status;
+    }
+
     /*
-    DownloadFileTask is a runnable task since it implements the Runnable interface
-    This can be passed as a parameter when creating an instance of the Thread class.
-     */
+        DownloadFileTask is a runnable task since it implements the Runnable interface
+        This can be passed as a parameter when creating an instance of the Thread class.
+         */
     @Override
     public void run() {
         System.out.println("Downloading a file: "+Thread.currentThread().getName());
@@ -15,9 +24,10 @@ public class DownloadFileTask implements Runnable{
         so we use the static method sleep that takes in a parameter
         requiring the number of milliseconds
          */
-        for (var i=0;i<Integer.MAX_VALUE;i++){
+        for (var i=0;i<10_000;i++){
             if (Thread.currentThread().isInterrupted()) return;
-            System.out.println("Downloading byte:"+i);
+            status.incrementTotalBytes();
+
         }
         try {
             Thread.sleep(5000);

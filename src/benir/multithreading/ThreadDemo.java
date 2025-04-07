@@ -2,6 +2,7 @@ package benir.multithreading;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ThreadDemo {
     public static void show(){
@@ -40,6 +41,12 @@ public class ThreadDemo {
     }
     public static void downloadStatus(){
         var status=new DownloadStatus();
+        /*
+        Instead of sharing a download status object among many download tasks
+        we can have each download task have its own download status object.
+        When all tasks are complete we can then combine the result.
+        The logic provided below, however, breaches memory safety.
+         */
         List<Thread> threads=new ArrayList<>();
         for (int i=0;i<10;i++){
             var thread=new Thread(new DownloadFileTask(status));
@@ -54,6 +61,32 @@ public class ThreadDemo {
             }
         }
         System.out.println(status.getTotalBytes());
+    }
+    public static void EliminateRaceConditions(){
+        List<Thread> threads= new ArrayList<>();
+        List<DownloadFileTask> tasks= new ArrayList<>();
+        for (var i=0;i<10;i++){
+            var task= new DownloadFileTask();
+            tasks.add(task);
+            var thread= new Thread(task);
+            thread.start();
+            threads.add(thread);
+        }
+
+        for (var thread : threads){
+            try{
+                thread.join();
+            }catch (InterruptedException e){
+                System.out.println("Thread is interrupted.");
+            }
+        }
+
+        Optional<Integer> totalBytes = tasks.stream()
+                .map(n -> n.getStatus().getTotalBytes())
+                .reduce(Integer::sum);
+        System.out.println(totalBytes);
+
+
     }
 
 }

@@ -1,11 +1,12 @@
 package benir.multithreading;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DownloadStatus {
     private volatile boolean isDone;
-    private int totalBytes;
+    private AtomicInteger totalBytes;
     private int totalFiles;
     private Object totalBytesLock=new Object();
     /*
@@ -17,7 +18,7 @@ public class DownloadStatus {
 
     private Lock lock=new ReentrantLock();
     public int getTotalBytes() {
-        return totalBytes;
+        return totalBytes.get();
     }
     /*
     Instead of using the lock method, we can use the
@@ -25,7 +26,8 @@ public class DownloadStatus {
      */
     public void incrementTotalBytes(){
         synchronized (totalBytesLock){
-            totalBytes++;
+            totalBytes.incrementAndGet();//++a
+            //getAndIncrement()==a++
         }
     }
     public synchronized void incrementTotalFiles(){

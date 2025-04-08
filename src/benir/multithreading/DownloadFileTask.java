@@ -37,6 +37,9 @@ public class DownloadFileTask implements Runnable{
             throw new RuntimeException(e);
         }
         status.done();
+        synchronized (status){
+            status.notifyAll();
+        }
         System.out.println("Download complete:"+Thread.currentThread().getName());
     }
     public DownloadStatus getStatus() {

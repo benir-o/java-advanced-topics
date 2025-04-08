@@ -11,6 +11,7 @@ public class Main {
 //        ThreadDemo.threadCancel();
 
 //        ThreadDemo.EliminateRaceConditions();
-        ThreadDemo.volatileKeyWord();
+//        ThreadDemo.volatileKeyWord();
+        ThreadDemo.threadSignalling();
     }
 }

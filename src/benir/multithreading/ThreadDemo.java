@@ -97,6 +97,11 @@ public class ThreadDemo {
         var status=new DownloadStatus();
 
         var thread1=new Thread(new DownloadFileTask(status));
+        /*
+        The declaration below wastes CPU cycles because the while loop could
+        even run 1 million times, depending on the specification within the
+        for-loop
+         */
         var thread2=new Thread(()->{
             while(!status.isDone()){
             }
@@ -104,6 +109,24 @@ public class ThreadDemo {
         });
         thread1.start();
         thread2.start();
+    }
+    public static void threadSignalling(){
+        var status=new DownloadStatus();
+        var thread1=new Thread(new DownloadFileTask(status));
+        var thread2=new Thread(()->
+        {
+            while(!status.isDone()){
+                synchronized (status){
+                    try {
+                        status.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                System.out.println(status.getTotalBytes());
+            }
+        });
     }
 
 

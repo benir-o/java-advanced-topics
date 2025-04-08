@@ -9,6 +9,7 @@ public class Main {
         System.out.println(Runtime.getRuntime().availableProcessors());
 //        ThreadDemo.threadJoining();
 //        ThreadDemo.threadCancel();
-        ThreadDemo.downloadStatus();
+
+        ThreadDemo.EliminateRaceConditions();
     }
 }

@@ -26,7 +26,7 @@ public class DownloadFileTask implements Runnable{
         so we use the static method sleep that takes in a parameter
         requiring the number of milliseconds
          */
-        for (var i=0;i<10_000;i++){
+        for (var i=0;i<1_000_000;i++){
             if (Thread.currentThread().isInterrupted()) return;
             status.incrementTotalBytes();
 
@@ -36,6 +36,7 @@ public class DownloadFileTask implements Runnable{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        status.done();
         System.out.println("Download complete:"+Thread.currentThread().getName());
     }
     public DownloadStatus getStatus() {

@@ -10,6 +10,7 @@ public class Main {
 //        ThreadDemo.threadJoining();
 //        ThreadDemo.threadCancel();
 
-        ThreadDemo.EliminateRaceConditions();
+//        ThreadDemo.EliminateRaceConditions();
+        ThreadDemo.volatileKeyWord();
     }
 }

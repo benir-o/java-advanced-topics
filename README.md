@@ -1,7 +1,7 @@
 # Java Essentials: Exceptions, Collections, Lambda Expressions, Streams, Concurrency and Multithreading
 
 ## Introduction
-This document provides an overview of three essential concepts in Java: **Exceptions**, **Collections**, **Lambda Expressions**, **Streams**. Understanding these topics is crucial for writing robust, efficient, and modern Java applications. As I complete the course, I will provide updates on the Java Streams API, as well as Concurrency and Multithreading. This readMe provides an overview of the concepts which have been comprehensively discussed within the files that I have uploaded.
+This document provides an overview of three essential concepts in Java: **Exceptions**, **Collections**, **Lambda Expressions**, **Streams**, as well as **concurrency and multithreading**. Understanding these topics is crucial for writing robust, efficient, and modern Java applications. As I complete the course, I will provide updates on the Java Streams API, as well as Concurrency and Multithreading. This readMe provides an overview of the concepts which have been comprehensively discussed within the files that I have uploaded.
 
 Feel free to bring suggestions and submit a Pull Request! Happy coding.
 

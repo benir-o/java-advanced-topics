@@ -3,6 +3,7 @@ package benir.multithreading;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class ThreadDemo {
     public static void show(){
@@ -85,7 +86,9 @@ public class ThreadDemo {
                 .map(n -> n.getStatus().getTotalBytes())
                 .reduce(Integer::sum);
         System.out.println(totalBytes);
-
+        
+    }
+    public static void Synchronization(){
 
     }
 

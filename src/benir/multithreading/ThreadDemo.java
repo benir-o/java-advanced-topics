@@ -1,8 +1,6 @@
 package benir.multithreading;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class ThreadDemo {
@@ -127,6 +125,30 @@ public class ThreadDemo {
                 System.out.println(status.getTotalBytes());
             }
         });
+    }
+
+    public static void atomicObjects(){
+
+    }
+    public static void synchronizedCollections(){
+        Collection<Integer> collection=
+                Collections.synchronizedCollection(new ArrayList<>());
+        var thread1=new Thread(()->{
+            collection.addAll(Arrays.asList(1,2,3));
+        });
+        var thread2=new Thread(()->
+        {
+            collection.addAll(Arrays.asList(4,5,6));
+        });
+        thread1.start();
+        thread2.start();
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(collection);
     }
 
 

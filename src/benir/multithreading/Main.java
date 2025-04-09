@@ -12,6 +12,6 @@ public class Main {
 
 //        ThreadDemo.EliminateRaceConditions();
 //        ThreadDemo.volatileKeyWord();
-        ThreadDemo.threadSignalling();
+        ThreadDemo.synchronizedCollections();
     }
 }

@@ -39,5 +39,7 @@ public class DownloadStatus {
     public void done(){
         isDone=true;
     }
-
+/*
+What is a compare and swap operation?
+ */
 }

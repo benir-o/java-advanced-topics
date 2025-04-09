@@ -1,6 +1,7 @@
 package benir.multithreading;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
 public class ThreadDemo {
@@ -149,6 +150,12 @@ public class ThreadDemo {
             throw new RuntimeException(e);
         }
         System.out.println(collection);
+    }
+    public static void concurrentCollection(){
+        Map<Integer,String> map=new ConcurrentHashMap<>();
+        map.put(1,"a");
+        map.get(1);
+        map.remove(1);
     }
 
 

@@ -2,7 +2,10 @@ package benir.GPT_mutlithreading;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         interruptAThread();
+         */
+        cancelDownload();
 
     }
     public static void func1(){
@@ -66,7 +69,16 @@ public class Main {
             throw new RuntimeException(e);
         }
         t1.interrupt();
-
+    }
+    public static void cancelDownload(){
+        Thread thread=new Thread(new DownloadFileTask3());
+        thread.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        thread.interrupt();
     }
 
 }

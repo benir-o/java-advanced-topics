@@ -2,7 +2,7 @@ package benir.GPT_mutlithreading;
 
 public class Main {
     public static void main(String[] args) {
-        joinAThread();
+        interruptAThread();
 
     }
     public static void func1(){
@@ -54,6 +54,19 @@ public class Main {
             throw new RuntimeException(e);
         }
         System.out.println("File is ready to be scanned");
+    }
+    public static void interruptAThread(){
+        System.out.println(Thread.currentThread().getName());
+        var downloadFile=new DownloadFileTask2();
+        Thread t1=new Thread(downloadFile);
+        t1.start();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        t1.interrupt();
+
     }
 
 }

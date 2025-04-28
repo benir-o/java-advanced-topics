@@ -11,10 +11,11 @@ public class DownloadFileTask2 implements Runnable{
          */
         try {
             Thread.sleep(5000);
+            System.out.println("Download complete: "+ Thread.currentThread().getName());
+
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            System.out.println("Download interrupted");
         }
-        System.out.println("Download complete: "+ Thread.currentThread().getName());
 
     }
 }

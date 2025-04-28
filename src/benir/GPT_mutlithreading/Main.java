@@ -8,7 +8,7 @@ public class Main {
         /*
         interruptAThread();
          */
-        cancelDownload();
+        RaceConditions();
 
     }
     public static void func1(){

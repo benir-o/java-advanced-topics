@@ -21,15 +21,24 @@ public class DownloadFileTask2 implements Runnable{
 }
 class DownloadFileTask3 implements Runnable{
 
+    private DownloadStatus2 status;
+    public DownloadFileTask3(){
+
+    }
+    public DownloadFileTask3(DownloadStatus2 status) {
+        this.status = status;
+    }
+
     @Override
     public void run() {
         System.out.println("Downloading a File: "+Thread.currentThread().getName());
-        for (var i=0;i<Integer.MAX_VALUE;i++){
+        for (var i=0;i<10000;i++){
             if (Thread.currentThread().isInterrupted()) {
                 System.out.println("Download interrupted");
                 break;
             }
             System.out.println("Downloading byte "+i);
+            status.incrementTotalBytes();
             System.out.println("Download Complete"+ Thread.currentThread().getName());
         }
     }

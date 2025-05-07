@@ -21,7 +21,7 @@ public class DownloadFileTask2 implements Runnable{
 }
 class DownloadFileTask3 implements Runnable{
 
-    private DownloadStatus2 status;
+    private DownloadStatus2 status=new DownloadStatus2();
     public DownloadFileTask3(){
 
     }
@@ -37,9 +37,9 @@ class DownloadFileTask3 implements Runnable{
                 System.out.println("Download interrupted");
                 break;
             }
-            System.out.println("Downloading byte "+i);
+            System.out.println("Downloading byte: "+i);
             status.incrementTotalBytes();
-            System.out.println("Download Complete"+ Thread.currentThread().getName());
+            System.out.println("Download Complete: "+ Thread.currentThread().getName());
         }
     }
 }

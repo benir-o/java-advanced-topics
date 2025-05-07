@@ -5,10 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        /*
-        interruptAThread();
-         */
-        RaceConditions();
+
+        cancelDownload();
+
 
     }
     public static void func1(){
@@ -67,17 +66,18 @@ public class Main {
         Thread t1=new Thread(downloadFile);
         t1.start();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         t1.interrupt();
     }
     public static void cancelDownload(){
-        Thread thread=new Thread(new DownloadFileTask3());
+        var status=new DownloadStatus2();
+        Thread thread=new Thread(new DownloadFileTask3(status));
         thread.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(55);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

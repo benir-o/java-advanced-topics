@@ -136,6 +136,10 @@ public class Main {
                 .map(t->t.getStatus().getTotalBytes())
                 .reduce(Integer::sum);
 
+        System.out.println(totalBytes);
+
+    }
+    public static void synchronize(){
 
     }
 

@@ -37,7 +37,7 @@ class DownloadFileTask3 implements Runnable{
                 break;
             }
             System.out.println("Downloading byte: "+i);
-            status.incrementTotalBytes();
+            status.incrementTotalBytesBySynchronization();
             System.out.println("Download Complete: "+ Thread.currentThread().getName());
         }
     }

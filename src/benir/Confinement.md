@@ -88,3 +88,8 @@ public class GUIExample extends JFrame {
 - Request Processing in web servers
 - Batch Processing Pipelines
 - Worker thread patterns
+
+## Author
+Benir Omenda
+
+#### Some code snipets have been provided by Pre-Trained Transformers.

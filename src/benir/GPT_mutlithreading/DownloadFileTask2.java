@@ -21,12 +21,11 @@ public class DownloadFileTask2 implements Runnable{
 }
 class DownloadFileTask3 implements Runnable{
 
-    private DownloadStatus2 status;
-    public DownloadFileTask3(){
 
-    }
-    public DownloadFileTask3(DownloadStatus2 status) {
-        this.status = status;
+    private DownloadStatus2 status;
+
+    public DownloadFileTask3() {
+        this.status = new DownloadStatus2();
     }
 
     @Override
@@ -37,9 +36,13 @@ class DownloadFileTask3 implements Runnable{
                 System.out.println("Download interrupted");
                 break;
             }
-            System.out.println("Downloading byte "+i);
-            status.incrementTotalBytes();
-            System.out.println("Download Complete"+ Thread.currentThread().getName());
+            System.out.println("Downloading byte: "+i);
+            status.incrementTotalBytesBySynchronization();
+            System.out.println("Download Complete: "+ Thread.currentThread().getName());
         }
     }
+    public DownloadStatus2 getStatus() {
+        return status;
+    }
+
 }

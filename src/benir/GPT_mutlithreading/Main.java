@@ -5,10 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        /*
-        interruptAThread();
-         */
-        RaceConditions();
+
+        confinement();
+
 
     }
     public static void func1(){
@@ -67,17 +66,18 @@ public class Main {
         Thread t1=new Thread(downloadFile);
         t1.start();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         t1.interrupt();
     }
     public static void cancelDownload(){
+        var status=new DownloadStatus2();
         Thread thread=new Thread(new DownloadFileTask3());
         thread.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(55);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -92,7 +92,7 @@ public class Main {
         List<Thread> threads=new ArrayList<>();
         var status=new DownloadStatus2();
         for (var i=0;i<10;i++){
-            var thread=new Thread(new DownloadFileTask3(status));
+            var thread=new Thread(new DownloadFileTask3());
             thread.start();
             threads.add(thread);
         }
@@ -107,5 +107,41 @@ public class Main {
         System.out.println(status.getTotalBytes());
 
     }
+    //Confinement
+    /*
+    Instead of having a single status object being shared among many
+    threads, instead we make each individual thread
+    take its own status object
+     */
+    public static void confinement(){
+
+        List<Thread> threads= new ArrayList<>();
+        List<DownloadFileTask3> tasks=new ArrayList<>();
+        for (var i=0;i<10;i++){
+            var task=new DownloadFileTask3();
+            tasks.add(task);
+            var thread=new Thread(task);
+            thread.start();
+            threads.add(thread);
+        }
+        for (var thread: threads){
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        var totalBytes=
+                tasks.stream()
+                .map(t->t.getStatus().getTotalBytes())
+                .reduce(Integer::sum);
+
+        System.out.println(totalBytes);
+
+    }
+    public static void synchronize(){
+
+    }
+
 
 }

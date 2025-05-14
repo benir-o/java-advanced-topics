@@ -3,7 +3,11 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Advanced Topics/Collections/src_collections" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Advanced Topics/Concurrency and Multithreading/src_thread_concepts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Advanced Topics/Generic Lists/src_generic_lists" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Advanced Topics/Iterables in Java/src_iterables" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Advanced Topics/The Java Executor/src_executor" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -2,7 +2,7 @@ package executors;
 
 public class TestFutures {
     public static void main(String[] args) {
-        CompeletableFuturesDemo.codeCompletion();
+        //CompeletableFuturesDemo.codeCompletion();
         /*
         What is the difference between thenRun and
         thenRunAsync?
@@ -13,7 +13,11 @@ public class TestFutures {
 
         thenAccept
         thenAcceptAsync
+
+        Exceptionally returns a new Completable Future.
+        Philosophy: If an exception is thrown, then we return a default value
          */
-        CompeletableFuturesDemo.supplyStuff();
+        //CompeletableFuturesDemo.supplyStuff();
+        CompeletableFuturesDemo.handleExceptions();
     }
 }

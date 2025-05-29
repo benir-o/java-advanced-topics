@@ -79,4 +79,21 @@ public class CompeletableFuturesDemo {
             System.out.println(result);
         });
     }
+    public static void handleExceptions(){
+        var future=CompletableFuture.supplyAsync(()->{
+            System.out.println("Getting the current weather");
+            throw new IllegalStateException();
+        });
+
+        try {
+            var temperature=future.exceptionally(ex->1).get();
+            System.out.println(temperature);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.getCause();//Returns the cause of the exception
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -38,10 +38,10 @@ import java.util.concurrent.*;
 
 public class ExecutorDemo {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+        ExecutorService executors = Executors.newSingleThreadExecutor();
 
         try {
-            Future<Integer> future = executor.submit(() -> {
+            Future<Integer> future = executors.submit(() -> {
                 LongTask.simulate(); // sleeps for 3 seconds
                 return 1;
             });
@@ -53,7 +53,7 @@ public class ExecutorDemo {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
-            executor.shutdown();
+            executors.shutdown();
         }
     }
 }

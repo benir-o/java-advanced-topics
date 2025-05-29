@@ -1,4 +1,4 @@
-package executor;
+package executors;
 
 public class LongTask {
     public static void simulate(){

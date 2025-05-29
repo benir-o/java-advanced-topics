@@ -1,4 +1,4 @@
-package executor;
+package executors;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;

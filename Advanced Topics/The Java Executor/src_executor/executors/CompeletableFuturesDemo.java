@@ -1,6 +1,7 @@
 package executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
@@ -60,5 +61,22 @@ public class CompeletableFuturesDemo {
         Runnable task=()-> System.out.println("a");
         var future=CompletableFuture.runAsync(task);
 
+    }
+    public static void codeCompletion(){
+        var future=CompletableFuture.supplyAsync(()->1);
+        /*
+        CompletionStage x;-- Represents a step in an asynchronous operation
+         */
+        future.thenRunAsync(()-> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println("Done");
+        });
+    }
+    public static void supplyStuff(){
+        var future=CompletableFuture.supplyAsync(()->1);
+        future.thenAccept(result->{
+            System.out.println(Thread.currentThread().getName());
+            System.out.println(result);
+        });
     }
 }

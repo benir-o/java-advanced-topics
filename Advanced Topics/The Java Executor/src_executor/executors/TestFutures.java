@@ -1,5 +1,7 @@
 package executors;
 
+import java.util.concurrent.CompletableFuture;
+
 public class TestFutures {
     public static void main(String[] args) {
         //CompeletableFuturesDemo.codeCompletion();
@@ -18,6 +20,9 @@ public class TestFutures {
         Philosophy: If an exception is thrown, then we return a default value
          */
         //CompeletableFuturesDemo.supplyStuff();
-        CompeletableFuturesDemo.handleExceptions();
+        //CompeletableFuturesDemo.handleExceptions();
+        //CompeletableFuturesDemo.transformer();
+        CompeletableFuturesDemo.FahrenheitTransformer();
+
     }
 }

@@ -6,6 +6,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 public class CompeletableFuturesDemo {
+    public static int toFahrenheit(int celsius){
+        return (int) (celsius*1.8)+32;
+    }
     public static void show(){
         /*
         runAsync--If we don't pass an executor object to the
@@ -94,6 +97,29 @@ public class CompeletableFuturesDemo {
             e.getCause();//Returns the cause of the exception
             e.printStackTrace();
         }
+
+    }
+    public static void transformer(){
+        /*
+        Sometimes we need to transform the results of an asynchronous task.
+         */
+        var future=CompletableFuture.supplyAsync(()->20);
+        try {
+            var result=future
+                    .thenApply(CompeletableFuturesDemo::toFahrenheit)
+                    .get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void FahrenheitTransformer(){
+        var future=CompletableFuture.supplyAsync(()->20);
+        future
+                .thenApply(CompeletableFuturesDemo::toFahrenheit)
+                .thenAccept(f-> System.out.println(f));
 
     }
 }

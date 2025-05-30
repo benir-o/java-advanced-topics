@@ -22,7 +22,8 @@ public class TestFutures {
         //CompeletableFuturesDemo.supplyStuff();
         //CompeletableFuturesDemo.handleExceptions();
         //CompeletableFuturesDemo.transformer();
-        CompeletableFuturesDemo.FahrenheitTransformer();
+        //CompeletableFuturesDemo.FahrenheitTransformer();
+        CompeletableFuturesDemo.composingCompletableFutures();
 
     }
 }

@@ -6,6 +6,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 public class CompeletableFuturesDemo {
+    public static CompletableFuture<String> getUserEmail(){
+        return CompletableFuture.supplyAsync(()->"email");
+    }
     public static int toFahrenheit(int celsius){
         return (int) (celsius*1.8)+32;
     }
@@ -121,5 +124,22 @@ public class CompeletableFuturesDemo {
                 .thenApply(CompeletableFuturesDemo::toFahrenheit)
                 .thenAccept(f-> System.out.println(f));
 
+    }
+    public static void composingCompletableFutures(){
+        /*
+        We want to return the second task upon completion
+        of the first task.
+
+        A function that maps a string to a new CompletionStage Object
+         */
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "email");
+        future.thenCompose(
+                email->CompletableFuture.supplyAsync(()->"playlist")
+        ).thenAccept(playlist-> System.out.println(playlist));
+    }
+    public static void advancedComposition(){
+        getUserEmail().thenCompose(
+                email->CompletableFuture.supplyAsync(()->"playlist")
+        ).thenAccept(playlist-> System.out.println(playlist));
     }
 }

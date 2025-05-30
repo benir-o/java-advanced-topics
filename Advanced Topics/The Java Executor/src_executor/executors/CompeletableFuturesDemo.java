@@ -9,6 +9,9 @@ public class CompeletableFuturesDemo {
     public static CompletableFuture<String> getUserEmail(){
         return CompletableFuture.supplyAsync(()->"email");
     }
+    public static CompletableFuture<String> getPlaylist(String email){
+        return CompletableFuture.supplyAsync(()->"playlist");
+    }
     public static int toFahrenheit(int celsius){
         return (int) (celsius*1.8)+32;
     }
@@ -65,11 +68,10 @@ public class CompeletableFuturesDemo {
         -- supplyAsync- runs a supplier<T> that returns a result.
          */
         Runnable task=()-> System.out.println("a");
-        var future=CompletableFuture.runAsync(task);
-
+        CompletableFuture<Void> future=CompletableFuture.runAsync(task);
     }
     public static void codeCompletion(){
-        var future=CompletableFuture.supplyAsync(()->1);
+        CompletableFuture<Integer> future= CompletableFuture.supplyAsync(()->1);
         /*
         CompletionStage x;-- Represents a step in an asynchronous operation
          */
@@ -80,17 +82,16 @@ public class CompeletableFuturesDemo {
     }
     public static void supplyStuff(){
         var future=CompletableFuture.supplyAsync(()->1);
-        future.thenAccept(result->{
+        CompletableFuture<Void> finish=future.thenAccept(result->{
             System.out.println(Thread.currentThread().getName());
             System.out.println(result);
         });
     }
     public static void handleExceptions(){
-        var future=CompletableFuture.supplyAsync(()->{
+        CompletableFuture<Integer> future=CompletableFuture.supplyAsync(()->{
             System.out.println("Getting the current weather");
             throw new IllegalStateException();
         });
-
         try {
             var temperature=future.exceptionally(ex->1).get();
             System.out.println(temperature);
@@ -139,7 +140,7 @@ public class CompeletableFuturesDemo {
     }
     public static void advancedComposition(){
         getUserEmail().thenCompose(
-                email->CompletableFuture.supplyAsync(()->"playlist")
+                CompeletableFuturesDemo::getPlaylist
         ).thenAccept(playlist-> System.out.println(playlist));
     }
 }

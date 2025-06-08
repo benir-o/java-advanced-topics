@@ -179,4 +179,20 @@ public class CompeletableFuturesDemo {
         });
 
     }
+    public static void waitFor1task(){
+        var first=CompletableFuture.supplyAsync(()->{
+            LongTask.simulate();
+            return 20;
+        });
+        var second= CompletableFuture.supplyAsync(()->20);
+
+        /*
+        The method below completes as soon as one of the asynchronous
+        tasks complete
+         */
+        CompletableFuture
+                .anyOf(first,second)
+                .thenAccept(temp-> System.out.println(temp))
+                ;
+    }
 }

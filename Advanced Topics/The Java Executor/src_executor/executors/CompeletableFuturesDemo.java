@@ -3,6 +3,7 @@ package executors;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class CompeletableFuturesDemo {
@@ -194,5 +195,20 @@ public class CompeletableFuturesDemo {
                 .anyOf(first,second)
                 .thenAccept(temp-> System.out.println(temp))
                 ;
+    }
+    public static void handlingTimeouts(){
+        var future=CompletableFuture.supplyAsync(()->{
+            LongTask.simulate();
+            return 1;
+        });
+        try {
+            var result=future.completeOnTimeout(1,1, TimeUnit.SECONDS)
+                    .get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
